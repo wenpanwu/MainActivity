@@ -75,8 +75,8 @@ public class GameView extends SurfaceView implements Runnable {
     private void update() {
         player.update();
 
-        boom.setX(-250);
-        boom.setY(-250);
+        boom.x = -250;
+        boom.y = -250;
 
         for (Star s : stars) {
             s.update(-5 + speedBooster);
@@ -86,8 +86,8 @@ public class GameView extends SurfaceView implements Runnable {
             enemies[i].update(-5 + speedBooster);
 
             if (Rect.intersects(player.detectCollision, enemies[i].detectCollision)) {
-                boom.setX(enemies[i].x);
-                boom.setY(enemies[i].getY());
+                boom.x = enemies[i].x;
+                boom.y = enemies[i].getY();
                 enemies[i].x = -200;
             }
         }
@@ -114,9 +114,9 @@ public class GameView extends SurfaceView implements Runnable {
                 );
             }
             canvas.drawBitmap(
-                    boom.getBitmap(),
-                    boom.getX(),
-                    boom.getY(),
+                    boom.bitmap,
+                    boom.x,
+                    boom.y,
                     paint
             );
             surfaceHolder.unlockCanvasAndPost(canvas);

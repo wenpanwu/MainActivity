@@ -8,8 +8,6 @@ class Star(private val maxX: Int, private val maxY: Int) {
     var y: Int
         private set
     private var speed: Int
-    private val minX = 0
-    private val minY = 0
     fun update(playerSpeed: Int) {
         x -= playerSpeed
         x -= speed

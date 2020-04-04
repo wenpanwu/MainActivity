@@ -23,8 +23,8 @@ class GameActivity : AppCompatActivity() {
         booster.setTextColor(Color.RED)
         booster.height = 260
         booster.width = 175
-        booster.x = 1650.0f
-        booster.y = 960.0f
+        booster.x = 950.0f
+        booster.y = 560.0f
         booster.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 gameView!!.speedBooster = 10

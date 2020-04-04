@@ -24,7 +24,6 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
     private var canvas: Canvas? = null
     private val stars = ArrayList<Star>()
     private val boom: Boom
-    @JvmField
     var speedBooster = 0
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
         when (motionEvent.action and MotionEvent.ACTION_MASK) {

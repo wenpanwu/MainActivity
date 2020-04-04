@@ -7,9 +7,7 @@ import android.graphics.Rect
 import java.util.*
 
 class Enemy(context: Context, screenX: Int, screenY: Int) {
-    @JvmField
     val bitmap: Bitmap
-    @JvmField
     var x: Int
     var y: Int
         private set
@@ -19,7 +17,6 @@ class Enemy(context: Context, screenX: Int, screenY: Int) {
     private val minX: Int
     private val maxY: Int
     private val minY: Int
-    @JvmField
     val detectCollision: Rect
     fun update(playerSpeed: Int) {
         x -= playerSpeed

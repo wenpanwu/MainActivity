@@ -5,11 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 
 class Boom(context: Context) {
-    @JvmField
     var bitmap: Bitmap
-    @JvmField
     var x: Int
-    @JvmField
     var y: Int
 
     init {

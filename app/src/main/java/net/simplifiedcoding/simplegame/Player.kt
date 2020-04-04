@@ -6,11 +6,8 @@ import android.graphics.BitmapFactory
 import android.graphics.Rect
 
 class Player(context: Context, screenX: Int, screenY: Int) {
-    @JvmField
     val detectCollision: Rect
-    @JvmField
     val bitmap: Bitmap
-    @JvmField
     val x = 75
     var y = 50
         private set

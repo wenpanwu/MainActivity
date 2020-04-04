@@ -18,6 +18,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
     private var gameThread: Thread? = null
     private val player: Player
     private val paint: Paint
+    private val scorePaint: Paint
     private val surfaceHolder: SurfaceHolder
     private val enemies: Array<Enemy?>
     private val enemyCount = 3
@@ -85,6 +86,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
                     boom.y.toFloat(),
                     paint
             )
+            canvas?.drawText("SCORE: ", 10f, 30f, scorePaint)
             surfaceHolder.unlockCanvasAndPost(canvas)
         }
     }
@@ -115,6 +117,9 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
         player = Player(context!!, screenY)
         surfaceHolder = holder
         paint = Paint()
+        scorePaint = Paint()
+        scorePaint.color = Color.WHITE
+        scorePaint.textSize = 36f
         val starNums = 100
         for (i in 0 until starNums) {
             val s = Star(screenX, screenY)

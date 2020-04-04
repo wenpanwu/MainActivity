@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Rect
 
-class Player(context: Context, screenX: Int, screenY: Int) {
+class Player(context: Context, screenY: Int) {
     val detectCollision: Rect
     val bitmap: Bitmap
     val x = 75

@@ -112,7 +112,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
     }
 
     init {
-        player = Player(context!!, screenX, screenY)
+        player = Player(context!!, screenY)
         surfaceHolder = holder
         paint = Paint()
         val starNums = 100

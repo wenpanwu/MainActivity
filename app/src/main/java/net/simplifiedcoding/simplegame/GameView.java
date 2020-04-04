@@ -85,7 +85,7 @@ public class GameView extends SurfaceView implements Runnable {
         for(int i = 0; i < enemyCount; i++) {
             enemies[i].update(-5 + speedBooster);
 
-            if (Rect.intersects(player.getDetectCollision(), enemies[i].detectCollision)) {
+            if (Rect.intersects(player.detectCollision, enemies[i].detectCollision)) {
                 boom.x = enemies[i].x;
                 boom.y = enemies[i].getY();
                 enemies[i].x = -200;
@@ -101,8 +101,8 @@ public class GameView extends SurfaceView implements Runnable {
                 paint. setStrokeWidth(s.getStarWidth());
                 canvas.drawPoint(s.getX(), s.getY(), paint);
             }
-            canvas.drawBitmap(player.getBitmap(),
-                    player.getX(),
+            canvas.drawBitmap(player.bitmap,
+                    player.x,
                     player.getY(),
                     paint);
             for (int i = 0; i < enemyCount; i++) {

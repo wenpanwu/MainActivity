@@ -26,6 +26,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
     private val stars = ArrayList<Star>()
     private val boom: Boom
     var speedBooster = 0
+    var score = 0
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
         when (motionEvent.action and MotionEvent.ACTION_MASK) {
             MotionEvent.ACTION_UP -> player.stopLifting()
@@ -54,6 +55,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
             if (Rect.intersects(player.detectCollision, enemies[i]!!.detectCollision)) {
                 boom.x = enemies[i]!!.x
                 boom.y = enemies[i]!!.y
+                score += 1
                 enemies[i]!!.x = -200
             }
         }
@@ -86,7 +88,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
                     boom.y.toFloat(),
                     paint
             )
-            canvas?.drawText("SCORE: ", 10f, 30f, scorePaint)
+            canvas?.drawText("SCORE: $score", 10f, 30f, scorePaint)
             surfaceHolder.unlockCanvasAndPost(canvas)
         }
     }

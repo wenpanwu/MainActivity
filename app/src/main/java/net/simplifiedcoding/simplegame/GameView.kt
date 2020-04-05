@@ -25,6 +25,9 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
     private var canvas: Canvas? = null
     private val stars = ArrayList<Star>()
     private val boom: Boom
+    private val asteroids: Array<Asteroid?>
+    private val asteroidCount = 3
+
     var speedBooster = 0
     var score = 0
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
@@ -59,6 +62,16 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
                 enemies[i]!!.x = -200
             }
         }
+
+        for (i in 0 until asteroidCount) {
+            asteroids[i]!!.update(-5 + speedBooster)
+            if (Rect.intersects(player.detectCollision, asteroids[i]!!.detectCollision)) {
+                boom.x = asteroids[i]!!.x
+                boom.y = asteroids[i]!!.y
+                score -= 1
+                asteroids[i]!!.x = -200
+            }
+        }
     }
 
     private fun draw() {
@@ -82,6 +95,16 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
                         paint
                 )
             }
+
+            for (i in 0 until asteroidCount) {
+                canvas?.drawBitmap(
+                        asteroids[i]!!.bitmap,
+                        asteroids[i]!!.x.toFloat(),
+                        asteroids[i]!!.y.toFloat(),
+                        paint
+                )
+            }
+
             canvas?.drawBitmap(
                     boom.bitmap,
                     boom.x.toFloat(),
@@ -132,5 +155,11 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
             enemies[i] = Enemy(context, screenX, screenY)
         }
         boom = Boom(context)
+
+        asteroids = arrayOfNulls(asteroidCount)
+        for (i in 0 until asteroidCount) {
+            asteroids[i] = Asteroid(context, screenX, screenY)
     }
+}
+
 }

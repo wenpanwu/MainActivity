@@ -6,12 +6,12 @@ import android.graphics.BitmapFactory
 import android.graphics.Rect
 import java.util.*
 
-class Enemy(context: Context, screenX: Int, screenY: Int) {
+class Asteroid(context: Context, screenX: Int, screenY: Int) {
     val bitmap: Bitmap
     var x: Int
     var y: Int
         private set
-    var speed = 1
+    var speed = 2
         private set
     private val maxX: Int
     private val minX: Int
@@ -34,7 +34,7 @@ class Enemy(context: Context, screenX: Int, screenY: Int) {
     }
 
     init {
-        bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.alien)
+        bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.asteroid)
         maxX = screenX
         maxY = screenY
         minX = 0

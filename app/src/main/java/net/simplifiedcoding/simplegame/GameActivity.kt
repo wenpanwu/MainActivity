@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 
 class GameActivity : AppCompatActivity() {
     private var gameView: GameView? = null
+    var scoreBoard: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val game = FrameLayout(this)
@@ -18,6 +19,13 @@ class GameActivity : AppCompatActivity() {
         display.getSize(size)
         gameView = GameView(this, size.x, size.y)
         game.addView(gameView)
+        scoreBoard = Button(this)
+        scoreBoard?.text = "Your score is " + gameView?.scoreTracker
+        scoreBoard?.setTextColor(Color.RED)
+        scoreBoard?.height = 400
+        scoreBoard?.width = 200
+        scoreBoard?.x = 1650.0f
+        scoreBoard?.y = 0.0f
         val booster = Button(this)
         booster.text = "Boost!"
         booster.setTextColor(Color.RED)
@@ -34,6 +42,9 @@ class GameActivity : AppCompatActivity() {
             true
         }
         game.addView(booster, 260, 145)
+        setContentView(game)
+
+        game.addView(scoreBoard, 300, 160)
         setContentView(game)
     }
 

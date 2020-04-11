@@ -10,8 +10,10 @@ import android.widget.FrameLayout
 
 class GameActivity : AppCompatActivity() {
     private var gameView: GameView? = null
+    var scale: Float = 1f
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        scale = resources.displayMetrics.density
         val game = FrameLayout(this)
         val display = windowManager.defaultDisplay
         val size = Point()
@@ -23,8 +25,8 @@ class GameActivity : AppCompatActivity() {
         booster.setTextColor(Color.RED)
         booster.height = 260
         booster.width = 175
-        booster.x = 905.0f
-        booster.y = 530.0f
+        booster.x = 880*scale
+        booster.y = 600*scale
         booster.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 gameView!!.speedBooster = 10

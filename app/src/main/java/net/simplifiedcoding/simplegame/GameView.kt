@@ -20,6 +20,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
     private val paint: Paint
     private val surfaceHolder: SurfaceHolder
     private val enemies: Array<Enemy?>
+    private val asteroids: Array<Asteroid?>
     private val enemyCount = 3
     private var canvas: Canvas? = null
     private val stars = ArrayList<Star>()
@@ -56,6 +57,9 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
                 enemies[i]!!.x = -200
             }
         }
+        for (i in 0 until 3) {
+            asteroids[i]!!.update(-5 + speedBooster)
+        }
     }
 
     private fun draw() {
@@ -79,6 +83,15 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
                         paint
                 )
             }
+            for (i in 0 until 3) {
+                canvas?.drawBitmap(
+                        asteroids[i]!!.bitmap,
+                        asteroids[i]!!.x.toFloat(),
+                        asteroids[i]!!.y.toFloat(),
+                        paint
+                )
+            }
+
             canvas?.drawBitmap(
                     boom.bitmap,
                     boom.x.toFloat(),
@@ -124,6 +137,11 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
         for (i in 0 until enemyCount) {
             enemies[i] = Enemy(context, screenX, screenY)
         }
+        asteroids = arrayOfNulls(3)
+        for (i in 0 until 3) {
+            asteroids[i] = Asteroid(context, screenX, screenY)
+        }
+
         boom = Boom(context)
     }
 }

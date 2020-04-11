@@ -18,6 +18,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
     private var gameThread: Thread? = null
     private val player: Player
     private val paint: Paint
+    private val scorePaint: Paint
     private val surfaceHolder: SurfaceHolder
     private val enemies: Array<Enemy?>
     private val asteroids: Array<Asteroid?>
@@ -25,6 +26,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
     private var canvas: Canvas? = null
     private val stars = ArrayList<Star>()
     private val boom: Boom
+    private var score: Int = 0
     var speedBooster = 0
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
         when (motionEvent.action and MotionEvent.ACTION_MASK) {
@@ -55,6 +57,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
                 boom.x = enemies[i]!!.x
                 boom.y = enemies[i]!!.y
                 enemies[i]!!.x = -200
+                score += 1
             }
         }
         for (i in 0 until 3) {
@@ -98,6 +101,7 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
                     boom.y.toFloat(),
                     paint
             )
+            canvas?.drawText("score: $score", 50f, 50f, scorePaint)
             surfaceHolder.unlockCanvasAndPost(canvas)
         }
     }
@@ -128,6 +132,9 @@ class GameView(context: Context?, screenX: Int, screenY: Int) : SurfaceView(cont
         player = Player(context!!, screenX, screenY)
         surfaceHolder = holder
         paint = Paint()
+        scorePaint = Paint()
+        scorePaint.color = Color.RED
+        scorePaint.textSize = 36f
         val starNums = 100
         for (i in 0 until starNums) {
             val s = Star(screenX, screenY)
